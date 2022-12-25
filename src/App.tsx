@@ -22,6 +22,8 @@ export const App: React.FC = () => {
       <Provider onClick={() => ({})}>
         TodoList
       </Provider>
+
+      <h2>Title</h2>
     </div>
   );
 };
