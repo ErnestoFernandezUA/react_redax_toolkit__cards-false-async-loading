@@ -6,43 +6,24 @@
   height: auto;
   background-color: antiquewhite;
   box-sizing: border-box;
-  padding: 20px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   
   &__header {
-    margin: 0 auto;
-  }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px;
 
-  & h2 {
-    display: inline;
-    margin-right: 17px;
-  }
-
-  &__button {
-    border: 0;
-    text-align: center;
-    display: inline-block;
-    padding: 14px;
-    width: max-content;
-    margin: 7px;
-    color: #ffffff;
-    background-color: #0990f8;
-    border-radius: 8px;
-    font-family: "proxima-nova-soft", sans-serif;
-    font-weight: 600;
-    text-decoration: none;
-    transition: box-shadow 200ms ease-out;
-    transform: translateY(-5px);
-  
-    &:hover {
-      background-color: #0a69b1;
+    & > h2 {
+      padding: 0;
+      line-height: 40px;
     }
   }
   
   &__list {
-    // border: 1px solid red;
     margin: 10px auto;
     display: flex;
     flex-direction: row;

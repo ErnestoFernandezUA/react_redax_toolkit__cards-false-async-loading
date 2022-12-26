@@ -22,20 +22,23 @@ const Modal: FunctionComponent<ModalProps> = ({
     <div className="Modal">
       <div className="Modal__header">
         <h2>Deleted</h2>
-        <button
-          type="button"
-          onClick={() => closeModal(false)}
-          className={classNames('Modal__button')}
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          onClick={() => dispatch(restoreAll())}
-          className={classNames('Modal__button')}
-        >
-          Restore All
-        </button>
+
+        <div className="Modal__container">
+          <button
+            type="button"
+            onClick={() => closeModal(false)}
+            className={classNames('Modal__button', 'button')}
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            onClick={() => dispatch(restoreAll())}
+            className={classNames('Modal__button', 'button')}
+          >
+            Restore All
+          </button>
+        </div>
       </div>
 
       <ul className="Modal__list">

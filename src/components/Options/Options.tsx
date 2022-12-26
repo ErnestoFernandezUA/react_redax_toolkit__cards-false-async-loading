@@ -13,6 +13,7 @@ import {
 } from '../../features/Options/optionSlice';
 import { selectRandomDelay, setRandomDelay } from '../../features/Server/serverSlice';
 import './Options.scss';
+import '../../layout/custom_checkbox.scss';
 
 export const Options: FunctionComponent = () => {
   const dispatch = useAppDispatch();

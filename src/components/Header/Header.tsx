@@ -14,8 +14,9 @@ import {
   selectOnFill,
   setOnFill,
 } from '../../features/Photo/photoSlice';
-import './Header.scss';
 import { selectServerStorage } from '../../features/Server/serverSlice';
+import './Header.scss';
+import '../../layout/button.scss';
 
 export const Header: FunctionComponent = () => {
   const dispatch = useAppDispatch();
@@ -53,7 +54,7 @@ export const Header: FunctionComponent = () => {
       <button
         type="button"
         onClick={() => dispatch(falseLoadingPhotoAsync())}
-        className={classNames('Header__button')}
+        className={classNames('Header__button', 'button')}
       >
         Add
       </button>
@@ -61,7 +62,7 @@ export const Header: FunctionComponent = () => {
       <button
         type="button"
         onClick={() => dispatch(deletePhoto())}
-        className={classNames('Header__button')}
+        className={classNames('Header__button', 'button')}
       >
         Delete
       </button>
@@ -71,8 +72,8 @@ export const Header: FunctionComponent = () => {
         onClick={() => {
           dispatch(setOnFill(!onFillByThunk));
         }}
-        className={classNames('Header__button',
-          { 'Header__button--active': onFillByThunk })}
+        className={classNames('Header__button', 'button',
+          { 'button--active': onFillByThunk })}
       >
         FillByThunk
       </button>
@@ -80,8 +81,8 @@ export const Header: FunctionComponent = () => {
       <button
         type="button"
         onClick={() => onFillHandler(onFillSetTimeOut)}
-        className={classNames('Header__button',
-          { 'Header__button--active': onFillSetTimeOut })}
+        className={classNames('Header__button', 'button',
+          { 'button--active': onFillSetTimeOut })}
       >
         FillBySetTimeInterval
       </button>
@@ -89,7 +90,7 @@ export const Header: FunctionComponent = () => {
       <button
         type="button"
         onClick={() => dispatch(clear())}
-        className={classNames('Header__button')}
+        className={classNames('Header__button', 'button')}
       >
         Clear
       </button>
@@ -97,8 +98,8 @@ export const Header: FunctionComponent = () => {
       <button
         type="button"
         onClick={() => dispatch(setVisible(!isVisibleOptions))}
-        className={classNames('Header__button',
-          { 'Header__button--active': isOptionsVisible })}
+        className={classNames('Header__button', 'button',
+          { 'button--active': isOptionsVisible })}
       >
         Options
       </button>
@@ -106,7 +107,7 @@ export const Header: FunctionComponent = () => {
       <button
         type="button"
         onClick={() => dispatch(someFunction())}
-        className={classNames('Header__button')}
+        className={classNames('Header__button', 'button')}
       >
         Show Deleted
       </button>
@@ -114,7 +115,7 @@ export const Header: FunctionComponent = () => {
       <button
         type="button"
         onClick={() => purge()}
-        className={classNames('Header__button')}
+        className={classNames('Header__button', 'button')}
       >
         Purge
       </button>

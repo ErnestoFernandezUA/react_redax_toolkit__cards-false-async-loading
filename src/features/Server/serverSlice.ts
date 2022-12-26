@@ -25,7 +25,7 @@ const initialState: ServerState = {
   statusLoading: 'idle',
   error: null,
   nextLoadingPhotoIndex: 0,
-  randomDelayLoading: true,
+  randomDelayLoading: false,
 };
 
 export const getToServerAsync = createAsyncThunk(
