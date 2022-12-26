@@ -1,29 +1,25 @@
-import React from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { loadDataOnServer, selectServerStorage } from './features/Server/serverSlice';
+import { HomePage } from './HomePage';
 import './App.scss';
 
-interface Props {
-  onClick: () => void;
-}
+const App: FunctionComponent = () => {
+  const dispatch = useAppDispatch();
+  const storage = useAppSelector(selectServerStorage);
+  const [virgin, setVirgin] = useState(true);
 
-export const Provider: React.FC<Props> = React.memo(
-  ({ onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  ),
-);
+  useEffect(() => {
+    dispatch(loadDataOnServer);
+  }, []);
 
-export const App: React.FC = () => {
+  if (storage.length > 0 && virgin) {
+    setVirgin(false);
+  }
+
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>
-        TodoList
-      </Provider>
-
-      <h2>Title</h2>
-    </div>
+    <HomePage />
   );
 };
+
+export default App;
