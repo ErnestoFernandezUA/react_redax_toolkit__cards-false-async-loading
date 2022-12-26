@@ -1,0 +1,36 @@
+.custom-checkbox {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  transform: translateY(6px);
+  border: 2px solid rgb(83, 83, 83);
+  border-radius: 4px;
+  position: relative;
+
+  &--checked {
+    background-color: #0990f8;
+    border: 2px solid transparent;
+  }
+
+  &--checked::after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 10px;
+    background-color: white;
+    transform: rotate(45deg);
+    top: 15px;
+    left: 2px;
+  }
+
+  &--checked::before {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 18px;
+    background-color: white;
+    transform: rotate(-45deg);
+    top: 12px;
+    left: 7px;
+  }
+}
