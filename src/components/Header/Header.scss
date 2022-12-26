@@ -1,0 +1,29 @@
+.Header {
+  margin: 10px auto;
+  min-width: 360px;
+  max-width: 1200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__button {
+    border: 0;
+    text-align: center;
+    display: inline-block;
+    padding: 14px;
+    width: max-content;
+    margin: 7px;
+    color: #ffffff;
+    background-color: #0990f8;
+    border-radius: 8px;
+    font-family: "proxima-nova-soft", sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: box-shadow 200ms ease-out;
+
+    &--active {
+      background-color: rgb(6, 73, 150);
+    }
+  }
+}
