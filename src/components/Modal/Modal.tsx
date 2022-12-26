@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch } from '../../app/hooks';
 import { restoreAll, restorePhoto } from '../../features/Photo/photoSlice';
@@ -17,6 +17,16 @@ const Modal: FunctionComponent<ModalProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const restore = (id:string | null) => (id ? dispatch(restorePhoto(id)) : null);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  const onRestore = () => {
+    if (!content.length) {
+      setIsEmpty(true);
+      setTimeout(() => setIsEmpty(false), 3000);
+    } else {
+      dispatch(restoreAll());
+    }
+  };
 
   return (
     <div className="Modal">
@@ -33,13 +43,15 @@ const Modal: FunctionComponent<ModalProps> = ({
           </button>
           <button
             type="button"
-            onClick={() => dispatch(restoreAll())}
+            onClick={() => onRestore()}
             className={classNames('Modal__button', 'button')}
           >
             Restore All
           </button>
         </div>
       </div>
+
+      {isEmpty && <h2 className="Modal__title-empty">Deleted is empty</h2>}
 
       <ul className="Modal__list">
         {content.map((item: PhotoElement) => (
