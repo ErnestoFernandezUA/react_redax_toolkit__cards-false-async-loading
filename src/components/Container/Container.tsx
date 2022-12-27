@@ -69,7 +69,9 @@ export const Container: FunctionComponent = () => {
           <li key={el.requestId || el.id}>
             <Card
               content={el}
-              onCross={() => dispatch(deletePhoto(el.id))}
+              onCross={() => {
+                dispatch(deletePhoto(el.id));
+              }}
             />
           </li>
         ))}

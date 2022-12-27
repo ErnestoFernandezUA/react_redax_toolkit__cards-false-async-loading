@@ -29,11 +29,11 @@
   &__title {
     width: 100%;
     background-color: white;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 0, 0, 0.5);
     margin: 0;
     padding: 10px;
     text-align: center;
-    color: $color-6;
+    color: white;
     transform: translate(0, 100%);
     transition: transform ease 2s;
   }
@@ -53,11 +53,17 @@
       opacity: 1;
     }
 
+    &:active {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 5px;
+    }
+
     &::before,
     &::after {
       content: '';
       position: absolute;
-      top: 10px;
+      top: 11px;
       display: block;
       width: 24px;
       height: 3px;

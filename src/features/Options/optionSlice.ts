@@ -7,16 +7,16 @@ import {
 import { RootState } from '../../app/store';
 
 export interface OptionsState {
-  isVisible: boolean;
-  showDeleted: boolean;
+  isOptionsVisible: boolean;
+  isDeletedVisible: boolean;
   width: number;
   height: number;
   'border-radius': number;
 }
 
 const initialState: OptionsState = {
-  isVisible: false,
-  showDeleted: false,
+  isOptionsVisible: false,
+  isDeletedVisible: false,
   width: 350,
   height: 250,
   'border-radius': 5,
@@ -27,7 +27,7 @@ const optionsSlice = createSlice({
   initialState,
   reducers: {
     setVisible: (state: OptionsState, action: PayloadAction<boolean>) => {
-      state.isVisible = action.payload;
+      state.isOptionsVisible = action.payload;
     },
     setWidth: (state: OptionsState, action: PayloadAction<number>) => {
       if (action.payload > 0 && action.payload <= 350) {
@@ -48,8 +48,8 @@ const optionsSlice = createSlice({
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = initialState;
     },
-    someFunction: (state: OptionsState) => {
-      state.showDeleted = !state.showDeleted;
+    changeVisibleDeleted: (state: OptionsState, action: PayloadAction<boolean>) => {
+      state.isDeletedVisible = action.payload;
     },
   },
 });
@@ -62,11 +62,11 @@ export const {
   setHeight,
   setBorderRadius,
   resetOptions,
-  someFunction,
+  changeVisibleDeleted,
 } = optionsSlice.actions;
 
-export const selectIsVisibleOptions = (state: RootState) => state.options.isVisible;
+export const selectIsVisibleOptions = (state: RootState) => state.options.isOptionsVisible;
 export const selectOptionsHeight = (state: RootState) => state.options.height;
 export const selectOptionsWidth = (state: RootState) => state.options.width;
 export const selectOptionsBorderRadius = (state: RootState) => state.options['border-radius'];
-export const selectStatusDeletedVisible = (state: RootState) => state.options.showDeleted;
+export const selectIsDeletedVisible = (state: RootState) => state.options.isDeletedVisible;

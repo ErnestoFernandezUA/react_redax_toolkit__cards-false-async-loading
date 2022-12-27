@@ -12,7 +12,7 @@ interface CardProps {
 
 export const Card: FunctionComponent<CardProps> = ({
   content,
-  // onCross,
+  onCross,
 }) => {
   const {
     // id,
@@ -33,6 +33,10 @@ export const Card: FunctionComponent<CardProps> = ({
     backgroundRepeat: 'no-repeat',
   };
 
+  const onKeyPressHandler = () => {
+    onCross();
+  };
+
   return (
     <div
       className={classNames('Card',
@@ -47,13 +51,14 @@ export const Card: FunctionComponent<CardProps> = ({
         <div className="Card--visible">
           <div className="Card__title">{author}</div>
 
-          {/* <div
+          <div
             className="Card__button-cross"
-            onClick={onCross}
-            onKeyPress={onKeyPressHandler}
+            onClick={() => onCross()}
+            onKeyDown={() => onKeyPressHandler()}
             role="button"
+            tabIndex={0}
           >
-          </div> */}
+          </div>
         </div>
       )}
     </div>

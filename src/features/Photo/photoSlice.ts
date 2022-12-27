@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import {
   createAsyncThunk,
   createSlice,
@@ -104,10 +103,10 @@ const photosSlice = createSlice({
       ));
     },
     deletePhoto: (state: PhotosState, action:PayloadAction<string | null | undefined>) => {
-      if (action.payload) {
+      if (action.payload || action.payload === '0') {
         const deletedIndex = state.list.findIndex(photo => photo.id === action.payload);
 
-        if (deletedIndex) {
+        if (deletedIndex >= 0) {
           state.deleted.push(...state.list.splice(deletedIndex, 1));
         }
       } else {
@@ -115,29 +114,38 @@ const photosSlice = createSlice({
         // eslint-disable-next-line no-lonely-if
         if (state.list.length) {
           state.deleted.push(state.list[state.list.length - 1]);
-          // eslint-disable-next-line no-plusplus
-          state.list.length -= 1;
+
+          // eslint-disable-next-line no-plusplus, no-param-reassign
+          state.list.length--;
         }
       }
     },
     restorePhoto: (state: PhotosState, action: PayloadAction<string>) => {
-      if (action.payload) {
+      if (action.payload || action.payload === '0') {
         const restoreIndex = state.deleted.findIndex(photo => photo.id === action.payload);
 
-        if (restoreIndex) {
+        // eslint-disable-next-line no-console
+        console.log(restoreIndex);
+
+        if (restoreIndex >= 0) {
           state.list.push(...state.deleted.splice(restoreIndex, 1));
         }
       }
     },
     restoreAll: (state: PhotosState) => {
       state.list.push(...state.deleted);
+      // eslint-disable-next-line no-param-reassign
       state.deleted.length = 0;
     },
     setOnFill: (state: PhotosState, action: PayloadAction<boolean>) => {
+      // eslint-disable-next-line no-param-reassign
       state.onFill = action.payload;
     },
     clear: (state) => {
       state.deleted.push(...state.list.splice(1));
+    },
+    reset: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -147,6 +155,7 @@ const photosSlice = createSlice({
         // console.log('falseLoadingPhotoAsync.pending');
 
         if (state.onFill) {
+          // eslint-disable-next-line no-param-reassign
           state.onFillLoadingStatus = 'loading';
         }
 
@@ -168,16 +177,19 @@ const photosSlice = createSlice({
         const { requestId } = action.meta;
 
         if (state.onFill) {
+          // eslint-disable-next-line no-param-reassign
           state.onFillLoadingStatus = 'idle';
         }
 
         if (isElementInList(state.list, requestId)) {
+          // eslint-disable-next-line no-param-reassign
           state.list = replaceDownloadedPhoto(
             state.list,
             requestId,
             action.payload as PhotoElement,
           );
         } else if (isElementInList(state.deleted, requestId)) {
+          // eslint-disable-next-line no-param-reassign
           state.deleted = replaceDownloadedPhoto(
             state.deleted,
             requestId,
@@ -186,6 +198,7 @@ const photosSlice = createSlice({
         }
 
         if (state.onFill && state.onFillLoadingStatus === 'loading') {
+          // eslint-disable-next-line no-param-reassign
           state.onFillLoadingStatus = 'idle';
         }
       })

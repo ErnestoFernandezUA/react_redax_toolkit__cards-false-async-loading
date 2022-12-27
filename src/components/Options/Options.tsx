@@ -65,11 +65,12 @@ export const Options: FunctionComponent = () => {
   };
 
   return (
-    visible
-      ? (
+    <>
+      { visible && (
         <form
           onSubmit={(event) => handleSubmit(event)}
-          className="Options"
+          className={classNames('Options',
+            { 'Options--visible': visible })}
         >
           <div>
             <div className="Options__field">
@@ -118,7 +119,6 @@ export const Options: FunctionComponent = () => {
             </div>
 
             <div className="Options__field">
-              {/* <label htmlFor="delay"> */}
               random delay&nbsp;
               <div
                 role="checkbox"
@@ -131,7 +131,6 @@ export const Options: FunctionComponent = () => {
                 onKeyDown={() => {}}
               >
               </div>
-              {/* </label> */}
             </div>
 
             <div className="Options__field">
@@ -139,6 +138,7 @@ export const Options: FunctionComponent = () => {
             </div>
           </div>
         </form>
-      ) : null
+      )}
+    </>
   );
 };

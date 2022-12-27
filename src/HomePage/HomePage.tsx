@@ -6,7 +6,7 @@ import { Header } from '../components/Header';
 import { Options } from '../components/Options';
 import { selectServerStatusLoading } from '../features/Server/serverSlice';
 import { selectDeleted } from '../features/Photo/photoSlice';
-import { selectStatusDeletedVisible, someFunction } from '../features/Options/optionSlice';
+import { selectIsDeletedVisible, changeVisibleDeleted } from '../features/Options/optionSlice';
 import Modal from '../components/Modal/Modal';
 import './HomePage.scss';
 
@@ -14,7 +14,7 @@ export const HomePage: FunctionComponent = () => {
   const dispatch = useAppDispatch();
   const statusLoading = useAppSelector(selectServerStatusLoading);
   const deleted = useAppSelector(selectDeleted);
-  const isVisibleDeleted = useAppSelector(selectStatusDeletedVisible);
+  const isVisibleDeleted = useAppSelector(selectIsDeletedVisible);
   // const [isScrollDown, setScrollDown] = useState(false);
 
   // const headerHeight = 66;
@@ -50,7 +50,7 @@ export const HomePage: FunctionComponent = () => {
   return (
     <>
       <Header />
-
+      <Options />
       <main className="HomePage__main">
         {(statusLoading === 'loading') && (
           <Loader />
@@ -67,12 +67,10 @@ export const HomePage: FunctionComponent = () => {
 
       {isVisibleDeleted && (
         <Modal
-          closeModal={() => dispatch(someFunction())}
+          closeModal={() => dispatch(changeVisibleDeleted(false))}
           content={deleted}
         />
       )}
-
-      <Options />
     </>
   );
 };

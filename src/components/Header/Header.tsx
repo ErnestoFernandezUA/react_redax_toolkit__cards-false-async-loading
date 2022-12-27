@@ -6,7 +6,12 @@ import React, {
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { persistor } from '../../app/store';
-import { setVisible, selectIsVisibleOptions, someFunction } from '../../features/Options/optionSlice';
+import {
+  setVisible,
+  selectIsVisibleOptions,
+  changeVisibleDeleted,
+  selectIsDeletedVisible,
+} from '../../features/Options/optionSlice';
 import {
   clear,
   deletePhoto,
@@ -14,7 +19,6 @@ import {
   selectOnFill,
   setOnFill,
 } from '../../features/Photo/photoSlice';
-import { selectServerStorage } from '../../features/Server/serverSlice';
 import './Header.scss';
 import '../../layout/button.scss';
 
@@ -23,10 +27,8 @@ export const Header: FunctionComponent = () => {
   const isVisibleOptions = useAppSelector(selectIsVisibleOptions);
   const onFillByThunk = useAppSelector(selectOnFill);
   const isOptionsVisible = useAppSelector(selectIsVisibleOptions);
+  const isDeletedVisible = useAppSelector(selectIsDeletedVisible);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // eslint-disable-next-line no-console
-  console.log(useAppSelector(selectServerStorage));
 
   const onFillCallBack = () => dispatch(falseLoadingPhotoAsync());
   const [onFillSetTimeOut, setOnFillSetTimeOut] = useState(false);
@@ -44,9 +46,19 @@ export const Header: FunctionComponent = () => {
     startOnFillSetTimeOut(!status);
   };
 
-  const purge = () => {
+  const onPurge = () => {
     persistor.purge();
     window.location.reload();
+  };
+
+  const onOptions = () => {
+    dispatch(setVisible(!isVisibleOptions));
+    dispatch(changeVisibleDeleted(false));
+  };
+
+  const onDeleted = () => {
+    dispatch(changeVisibleDeleted(!isDeletedVisible));
+    dispatch(setVisible(false));
   };
 
   return (
@@ -97,7 +109,7 @@ export const Header: FunctionComponent = () => {
 
       <button
         type="button"
-        onClick={() => dispatch(setVisible(!isVisibleOptions))}
+        onClick={() => onOptions()}
         className={classNames('Header__button', 'button',
           { 'button--active': isOptionsVisible })}
       >
@@ -106,7 +118,7 @@ export const Header: FunctionComponent = () => {
 
       <button
         type="button"
-        onClick={() => dispatch(someFunction())}
+        onClick={() => onDeleted()}
         className={classNames('Header__button', 'button')}
       >
         Show Deleted
@@ -114,7 +126,7 @@ export const Header: FunctionComponent = () => {
 
       <button
         type="button"
-        onClick={() => purge()}
+        onClick={() => onPurge()}
         className={classNames('Header__button', 'button')}
       >
         Purge

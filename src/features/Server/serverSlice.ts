@@ -32,13 +32,8 @@ export const getToServerAsync = createAsyncThunk(
   'server/fetchPhotos',
   async (
     { page, limit = 100 }: {page: number; limit: number},
-    // { dispatch, rejectWithValue },
   ) => {
-    // const responseFinal: Photo[] = [];
-
     const response: Photo[] = await getPhotos(page, limit);
-
-    // responseFinal.push(...response);
 
     return response;
   },
