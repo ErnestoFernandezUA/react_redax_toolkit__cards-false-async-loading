@@ -11,7 +11,7 @@ interface ModalProps {
   content: PhotoElement[];
 }
 
-const Modal: FunctionComponent<ModalProps> = ({
+export const Modal: FunctionComponent<ModalProps> = ({
   closeModal,
   content,
 }) => {
@@ -66,5 +66,3 @@ const Modal: FunctionComponent<ModalProps> = ({
     </div>
   );
 };
-
-export default Modal;

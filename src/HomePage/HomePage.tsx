@@ -7,7 +7,7 @@ import { Options } from '../components/Options';
 import { selectServerStatusLoading } from '../features/Server/serverSlice';
 import { selectDeleted } from '../features/Photo/photoSlice';
 import { selectIsDeletedVisible, changeVisibleDeleted } from '../features/Options/optionSlice';
-import Modal from '../components/Modal/Modal';
+import { Modal } from '../components/Modal';
 import './HomePage.scss';
 
 export const HomePage: FunctionComponent = () => {
