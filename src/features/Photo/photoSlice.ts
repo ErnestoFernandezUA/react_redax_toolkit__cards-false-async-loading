@@ -56,7 +56,7 @@ export const falseLoadingPhotoAsync = createAsyncThunk(
 
     thunkAPI.dispatch(loadNextPhoto());
 
-    let delay = 300;
+    let delay = 3000;
 
     if (state.server.randomDelayLoading) {
       delay = 1000 + 3000 * Math.random();
