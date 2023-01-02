@@ -15,6 +15,7 @@ export const HomePage: FunctionComponent = () => {
   const statusLoading = useAppSelector(selectServerStatusLoading);
   const deleted = useAppSelector(selectDeleted);
   const isVisibleDeleted = useAppSelector(selectIsDeletedVisible);
+
   // const [isScrollDown, setScrollDown] = useState(false);
 
   // const headerHeight = 66;

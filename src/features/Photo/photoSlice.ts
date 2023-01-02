@@ -179,6 +179,7 @@ const photosSlice = createSlice({
       .addCase(falseLoadingPhotoAsync.fulfilled, (state, action) => {
         // console.log('falseLoadingPhotoAsync.fulfilled');
         const { requestId } = action.meta;
+        const { id } = action.payload as PhotoElement;
 
         if (state.onFill) {
           // eslint-disable-next-line no-param-reassign
@@ -205,6 +206,10 @@ const photosSlice = createSlice({
           // eslint-disable-next-line no-param-reassign
           state.onFillLoadingStatus = 'idle';
         }
+
+        if (id) {
+          state.loaded.push(id);
+        }
       })
       .addCase(falseLoadingPhotoAsync.rejected, () => {
       });
@@ -225,3 +230,4 @@ export const selectVisible = (state: RootState) => state.photos.list;
 export const selectDeleted = (state: RootState) => state.photos.deleted;
 export const selectOnFill = (state: RootState) => state.photos.onFill;
 export const selectOnFillLoadingStatus = (state: RootState) => state.photos.onFillLoadingStatus;
+export const selectLoaded = (state: RootState) => state.photos.loaded;
