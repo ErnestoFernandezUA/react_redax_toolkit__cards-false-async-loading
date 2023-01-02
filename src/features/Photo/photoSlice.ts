@@ -36,6 +36,7 @@ export interface PhotosState {
   deleted: PhotoElement[];
   onFill: boolean;
   onFillLoadingStatus: 'idle' | 'loading';
+  loaded: string[];
 }
 
 const initialState: PhotosState = {
@@ -43,18 +44,23 @@ const initialState: PhotosState = {
   deleted: [] as PhotoElement[],
   onFill: false,
   onFillLoadingStatus: 'idle',
+  loaded: [],
 };
 
 export const falseLoadingPhotoAsync = createAsyncThunk(
   'photo/fetchPhoto',
-  async (_, thunkAPI) => {
+  async (_, {
+    getState,
+    dispatch,
+    requestId,
+  }) => {
     // console.log('falseLoadingPhotoAsync body async function');
-    const state = thunkAPI.getState() as RootState;
+    const state = getState() as RootState;
     // eslint-disable-next-line prefer-destructuring
     const server = state.server;
     const loadingPhoto = server.storage[server.nextLoadingPhotoIndex];
 
-    thunkAPI.dispatch(loadNextPhoto());
+    dispatch(loadNextPhoto());
 
     let delay = 3000;
 
@@ -63,15 +69,13 @@ export const falseLoadingPhotoAsync = createAsyncThunk(
     }
 
     const response = await new Promise(resolve => {
-      setTimeout(() => {
-        return resolve(
-          {
-            ...loadingPhoto,
-            requestId: thunkAPI.requestId,
-            status: 'loading',
-          } as PhotoElement,
-        );
-      }, delay);
+      setTimeout(() => resolve(
+        {
+          ...loadingPhoto,
+          requestId,
+          status: 'loading',
+        } as PhotoElement,
+      ), delay);
     });
 
     return response;
@@ -95,7 +99,7 @@ const photosSlice = createSlice({
     changePhotoByRequestId: (state: PhotosState, action: PayloadAction<{
       requestId: string,
       photo: PhotoElement,
-      status: 'idle' | 'loading' | 'failed',
+      status: 'idle' | 'loading',
     }>) => {
       state.list.forEach((el: PhotoElement) => (el.requestId !== action.payload.requestId
         ? el
