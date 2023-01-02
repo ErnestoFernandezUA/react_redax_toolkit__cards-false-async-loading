@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/react_redax_toolkit__cards-false-async-loading/static/css/main.3eb87d38.chunk.css",
-    "main.js": "/react_redax_toolkit__cards-false-async-loading/static/js/main.0f7e28b3.chunk.js",
-    "main.js.map": "/react_redax_toolkit__cards-false-async-loading/static/js/main.0f7e28b3.chunk.js.map",
+    "main.css": "/react_redax_toolkit__cards-false-async-loading/static/css/main.dbd4ed2a.chunk.css",
+    "main.js": "/react_redax_toolkit__cards-false-async-loading/static/js/main.06d33300.chunk.js",
+    "main.js.map": "/react_redax_toolkit__cards-false-async-loading/static/js/main.06d33300.chunk.js.map",
     "runtime-main.js": "/react_redax_toolkit__cards-false-async-loading/static/js/runtime-main.1e8e1e22.js",
     "runtime-main.js.map": "/react_redax_toolkit__cards-false-async-loading/static/js/runtime-main.1e8e1e22.js.map",
     "static/js/2.a9776597.chunk.js": "/react_redax_toolkit__cards-false-async-loading/static/js/2.a9776597.chunk.js",
     "static/js/2.a9776597.chunk.js.map": "/react_redax_toolkit__cards-false-async-loading/static/js/2.a9776597.chunk.js.map",
     "index.html": "/react_redax_toolkit__cards-false-async-loading/index.html",
-    "static/css/main.3eb87d38.chunk.css.map": "/react_redax_toolkit__cards-false-async-loading/static/css/main.3eb87d38.chunk.css.map",
+    "static/css/main.dbd4ed2a.chunk.css.map": "/react_redax_toolkit__cards-false-async-loading/static/css/main.dbd4ed2a.chunk.css.map",
     "static/js/2.a9776597.chunk.js.LICENSE.txt": "/react_redax_toolkit__cards-false-async-loading/static/js/2.a9776597.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1e8e1e22.js",
     "static/js/2.a9776597.chunk.js",
-    "static/css/main.3eb87d38.chunk.css",
-    "static/js/main.0f7e28b3.chunk.js"
+    "static/css/main.dbd4ed2a.chunk.css",
+    "static/js/main.06d33300.chunk.js"
   ]
 }
